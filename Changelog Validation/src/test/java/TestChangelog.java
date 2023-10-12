@@ -16,7 +16,7 @@ public class TestChangelog {
     void setUp() throws SQLException {
         try {
             // Initialize the database connection
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb", "root", "password");
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/testdb", "root", "password");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
