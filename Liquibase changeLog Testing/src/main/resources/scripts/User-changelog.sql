@@ -1,0 +1,8 @@
+
+CREATE TABLE User (firstname VARCHAR(255) NULL, lastname VARCHAR(255));
+
+
+ALTER TABLE User ADD role VARCHAR(255) NULL;
+
+
+ALTER TABLE User ADD dept_name VARCHAR(255) NULL;

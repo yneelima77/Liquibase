@@ -1,0 +1,13 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                   http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro ">
+    <!--       Define your database changes here   -->
+    <!--     <includeAll path="resources"/> -->
+    <include file="db/regular/example1-changelog.sql"/>
+    <include file="db/rerun/example2-changelog.sql"/>
+    <include file="db/rerun/example3-changelog.sql"/>
+
+</databaseChangeLog>

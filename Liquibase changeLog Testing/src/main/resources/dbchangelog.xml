@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+http://www.liquibase.org/xml/ns/pro
+http://www.liquibase.org/xml/ns/pro ">
+
+<!--      Define your database changes here  -->
+<!--    <includeAll path="resources"/>-->
+<!--    <include file="JpaPdpPolicyDeploymentAudit-changelog.sql"/>-->
+<!--    <include file="JpaPdpPolicyDeploymentAudit-AddColumn-changelog.sql"/>-->
+    <preConditions>
+        <dbms  type="mysql"  />
+        <runningAs  username="root"  />
+    </preConditions>
+    <changeSet id="policy-1" author="Admin" context="v1.0.0, Test1">
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/Pdpstatistics-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-2" author="Admin" context="v1.0.0, Test1">
+        <preConditions  onFail="WARN">
+            <sqlCheck  expectedResult="0">SELECT COUNT(*) FROM Pdpstatistics</sqlCheck>
+        </preConditions>
+        <comment>Comments should go after the precondition. Otherwise, Liquibase returns an error.</comment>
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/Pdpstatistics-Insert-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-3" author="Admin" context="v1.0.0, Test1">
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/JpaPdpPolicyDeploymentAudit-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-4" author="Admin" context="v1.0.0, Test1 ">
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/JpaPdpPolicyDeploymentAudit-AddColumn-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-7" author="Admin" context="v1.0.0, Test1">
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/JpaPdpPolicyDeploymentAudit-InsertInto-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-8" author="Admin" context="v2.0.0, Test1">
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/JpaPdpPolicyDeploymentAudit-ModifyUser-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-9" author="Admin" context="v3.0.0, Prod">
+        <preConditions>
+            <not>
+                <tableExists tableName="User"/>
+            </not>
+        </preConditions>
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/User-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-10" author="Admin" context="v4.0.0, user_test">
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/User-Insert-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+<!--    Add an auto-incremented ID column as the primary key to the "User" table-->
+    <changeSet id="policy-11" author="Admin" context="v5.0.0, user_test">
+        <preConditions  onFail="WARN">
+            <tableExists tableName="User" />
+        </preConditions>
+        <comment>Comments should go after the precondition. Otherwise, Liquibase returns an error.</comment>
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/User-Add-Column-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    
+    <changeSet id="policy-12" author="Admin" context="v5.0.0, user_test">
+        <preConditions  onFail="WARN">
+            <tableExists tableName="User"/>
+            <columnExists tableName="User" columnName="user_id" />
+        </preConditions>
+        <comment>Add username column to the "User" table-</comment>
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/User-Add-Username-Column-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-13" author="Admin" context="v5.0.0, user_test">
+        <preConditions  onFail="WARN">
+            <tableExists tableName="User"/>
+            <columnExists tableName="User" columnName="username" />
+        </preConditions>
+        <comment>Update username column in the "User" table-</comment>
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/User-Update-Username-Column-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+   <changeSet id="policy-14" author="Admin" context="v5.0.0, user_test">
+        <preConditions  onFail="WARN">
+            <tableExists tableName="User"/>
+            <columnExists tableName="User" columnName="username" />
+        </preConditions>
+        <comment>Add unique constraint to username column in the "User" table-</comment>
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/User-AddConstraint-Username-Column-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="policy-15" author="Admin" context="v5.0.0, user_test">
+        <preConditions  onFail="WARN">
+            <tableExists tableName="User"/>
+            <columnExists tableName="User" columnName="username" />
+            <primaryKeyExists primaryKeyName="user_id" tableName="user" />
+            <rowCount expectedRows="5" tableName="user" />
+        </preConditions>
+        <comment>Adding NOT NULL constraint to firstname, lastname, role and dept_name columns in the "User" table-</comment>
+        <sqlFile path="C:/Users/NeelimaYamana/IdeaProjects/Liquibase changeLog Testing/target/classes/scripts/User-AddNotnull-to-Columns-changelog.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+</databaseChangeLog>
