@@ -27,7 +27,7 @@ public class TestChangelog {
         conn.close();
 
     }
-
+ 
     @Test(priority = 1)
     private void test_test1TableExists() throws SQLException {
         stmt = conn.createStatement();
@@ -55,8 +55,6 @@ public class TestChangelog {
             String columnType = rst.getString("Type");
             String isNullable = rst.getString("Null");
             String key = rst.getString("Key");
-            String defaultValue = rst.getString("Default");
-            String extra = rst.getString("Extra");
 
             // Validate column properties
             if ("id".equals(columnName)) {
@@ -84,6 +82,28 @@ public class TestChangelog {
                 System.out.println("Data exists in the table.");
             } else {
                 System.out.println("Data does not exist in the table.");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    @Test(priority = 4)
+    private void test_procedureExists() throws SQLException {
+
+        String query = "SHOW PROCEDURE STATUS WHERE NAME = 'InsertIntotest1'";
+        try {
+            PreparedStatement preStmt = conn.prepareStatement(query);
+            rst = preStmt.executeQuery();
+            rst.next();
+            String name = rst.getString("Name");
+
+            assertEquals("procedure exists in the table.", name,"InsertIntotest1");
+            if (name.equals("InsertIntotest1")) {
+                System.out.println("procedure " + name + " exists in the table.");
+            } else {
+                System.out.println("procedure does not exist in the table.");
             }
 
         } catch (Exception e) {

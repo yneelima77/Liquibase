@@ -25,6 +25,12 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.33</version>
         </dependency>
+       <!-- <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.2.0</version>
+        </dependency>-->
+
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
@@ -39,7 +45,7 @@
             <configuration>
                 <suiteXmlFiles>
                     <suiteXmlFile>
-                        src\test\resources\test_suite.xml
+                        src\test\resources\Test_suite.xml
                     </suiteXmlFile>
                 </suiteXmlFiles>
             </configuration>
